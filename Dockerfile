@@ -12,9 +12,9 @@ ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the build
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${BUILD_DEPS} ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${BUILD_DEPS} ${APP_DEPS}
 
 # Retrieve crawl
 RUN git clone ${CRAWL_REPO} /src/
@@ -38,9 +38,9 @@ ENV APP_DEPS="bzip2 liblua5.1-0-dev python3-minimal python3-pip python3-yaml \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the runtime
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${APP_DEPS}
 
 # Install Tornado
 RUN pip3 install tornado

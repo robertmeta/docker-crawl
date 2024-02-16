@@ -1,5 +1,5 @@
 # Builder image
-FROM ubuntu:20.04 AS builder
+FROM ubuntu:22.04 AS builder
 
 # Variables
 ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
@@ -8,13 +8,13 @@ ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
     lsof sudo libbot-basicbot-perl" \
   BUILD_DEPS="autoconf bison build-essential flex git libncursesw5-dev \
     libsqlite3-dev libz-dev pkg-config binutils-gold libsdl2-image-dev libsdl2-mixer-dev \
-    libsdl2-dev libfreetype6-dev libpng-dev ttf-dejavu-core advancecomp pngcrush" \
+    libsdl2-dev libfreetype6-dev libpng-dev fonts-dejavu-core advancecomp pngcrush" \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the build
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${BUILD_DEPS} ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${BUILD_DEPS} ${APP_DEPS}
 
 # Retrieve crawl
 RUN git clone ${CRAWL_REPO} /src/
@@ -38,9 +38,9 @@ ENV APP_DEPS="bzip2 liblua5.1-0-dev python3-minimal python3-pip python3-yaml \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the runtime
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${APP_DEPS}
 
 # Install Tornado
 RUN pip3 install tornado

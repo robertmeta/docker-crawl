@@ -2,7 +2,7 @@ version: "3"
 
 services:
   crawl:
-    image: frozenfoxx/crawl:latest
+    image: robertmeta/crawl:latest
     container_name: "crawl_webtiles"
     restart: always
     ports:

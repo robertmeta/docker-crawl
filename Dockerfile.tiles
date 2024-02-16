@@ -11,9 +11,9 @@ ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the build
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${BUILD_DEPS} ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${BUILD_DEPS} ${APP_DEPS}
 
 # Retrieve crawl
 RUN git clone ${CRAWL_REPO} /src/
@@ -36,9 +36,9 @@ ENV APP_DEPS="libsdl2-image-dev libsdl2-mixer-dev libsdl2-dev \
   DEBIAN_FRONTEND=noninteractive
 
 # Install packages for the runtime
-RUN apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y ${APP_DEPS}
+RUN apt update && \
+  apt upgrade -y && \
+  apt install -y ${APP_DEPS}
 
 # Copy over the compiled files
 COPY --from=builder /app/ /app/
