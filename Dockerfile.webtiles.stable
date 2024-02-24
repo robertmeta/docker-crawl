@@ -2,7 +2,7 @@
 FROM ubuntu:22.04 AS builder
 
 # Variables
-ENV CRAWL_REPO="https://github.com/crawl/crawl.git" \
+ENV CRAWL_TAG="0.31.0" CRAWL_REPO="https://github.com/crawl/crawl.git" \
   APP_DEPS="bzip2 liblua5.1-0-dev python3-minimal python3-pip python3-yaml \
     python-is-python3 ncurses-term locales-all sqlite3 libpcre3 locales \
     lsof sudo libbot-basicbot-perl" \
@@ -17,7 +17,7 @@ RUN apt update && \
   apt install -y ${BUILD_DEPS} ${APP_DEPS}
 
 # Retrieve crawl
-RUN git clone ${CRAWL_REPO} /src/
+RUN git clone --depth 1 --branch ${CRAWL_TAG} ${CRAWL_REPO} /src/
 
 # Build crawl
 RUN cd /src/crawl-ref/source && \
